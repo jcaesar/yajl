@@ -11,7 +11,7 @@ api = files(
 	'src/api/yajl_tree.h',
 )
 versionh = files('src/api/yajl_version.h.cmake')
-subdir('meson-include/yajl')
+subdir('include-workaround-meson/yajl')
 src = api + files(
 	'src/yajl.c',
 	'src/yajl_alloc.c',
@@ -30,12 +30,12 @@ src = api + files(
 	'src/yajl_version.c',
 )
 yajl = library('yajl', src,
-	include_directories: include_directories('meson-include'),
+	include_directories: include_directories('include-workaround-meson'),
 	install: true,
 )
 yajl_dep = declare_dependency(
 	link_with: yajl,
-	include_directories: include_directories('meson-include'),
+	include_directories: include_directories('include-workaround-meson'),
 )
 import('pkgconfig').generate(libraries: yajl,
 	subdirs: 'yajl',
